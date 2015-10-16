@@ -1,13 +1,51 @@
-import {Socket} from "phoenix"
+import {Socket} from 'phoenix';
+import {ImagesForm} from './uploader';
 
-// let socket = new Socket("/ws")
-// socket.connect()
-// let chan = socket.chan("topic:subtopic", {})
-// chan.join().receive("ok", resp => {
-//   console.log("Joined succesffuly!", resp)
-// })
+class Monoton extends React.Component {
+    componentWillMount() {
+    }
 
-let App = {
+    render() {
+        return (
+            <section>
+                <div id="stage" className="container-fluid">
+                    <Grid/>
+                    <ImagesForm url="/photos"/>
+                </div>
+            </section>
+        );
+    }
 }
 
-export default App
+class Grid extends React.Component {
+    componentWillMount() {
+    }
+
+    render() {
+        let image = (
+            <div className="image">
+                <Img src=""/>
+            </div>
+        )
+        return (
+            <div className="images">
+                {image}
+            </div>
+        );
+    }
+}
+
+class Img extends React.Component {
+    componentWillMount() {
+    }
+
+    render() {
+        return (
+            <div>
+                <img src={this.props.src} alt="" />
+            </div>
+        );
+    }
+}
+
+React.render(<Monoton/>, document.getElementById('canvas'));

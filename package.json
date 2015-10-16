@@ -1,29 +1,19 @@
 {
-  "name": "es6play",
+  "name": "mntn",
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-    "react": "^0.13.3",
-    "gulp": "^3.9.0",
-    "gulp-browserify": "0.5.1",
-    "gulp-babel": "^5.2.0",
-    "gulp-concat": "^1.0.2",
-    "gulp-util": "^3.0.0",
-    "object-assign": "^2.0.0",
-    "through2": "^0.6.1",
-    "traceur": "~0.0.88",
-    "vinyl-sourcemaps-apply": "^0.1.1"
+    "babel-brunch": "^5.1.1",
+    "brunch": "^1.8.3",
+    "clean-css-brunch": ">= 1.0 < 1.8",
+    "css-brunch": ">= 1.0 < 1.8",
+    "javascript-brunch": ">= 1.0 < 1.8",
+    "react-brunch": "^1.0.9",
+    "sass-brunch": "^1.8.10",
+    "uglify-js-brunch": ">= 1.0 < 1.8"
   },
-  "devDependencies": {
-    "gulp-react": "^3.0.1",
-    "gulp-sourcemaps": "^1.2.8",
-    "gulp-traceur": "^0.17.1",
-    "mocha": "*"
-  },
-  "scripts": {
-    "test": "node_modules/mocha/bin/mocha"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC"
 }
