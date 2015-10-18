@@ -18,7 +18,7 @@ defmodule Monoton.Mixfile do
   def application do
     [mod: {Monoton, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex, :erlcloud, :arc]]
+                    :phoenix_ecto, :postgrex, :erlcloud, :arc, :arc_ecto]]
   end
 
   # Specifies which paths to compile per environment
@@ -36,6 +36,7 @@ defmodule Monoton.Mixfile do
      {:phoenix_live_reload, "~> 0.5", only: :dev},
      {:cowboy, "~> 1.0"},
      {:erlcloud, "~> 0.9.2"},
-     {:arc, "~> 0.1.3"}]
+     {:arc, "~> 0.1.3"},
+     {:arc_ecto, "~> 0.1"}]
   end
 end

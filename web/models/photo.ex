@@ -1,18 +1,21 @@
 defmodule Monoton.Photo do
   use Monoton.Web, :model
+  use Arc.Ecto.Model
 
   schema "photos" do
-    field :name, :string, default: ""
-    field :url, :string
-    field :thumb_url, :string
+    field :name, :string
+    field :photo, Monoton.Image.Type
 
-    belongs_to :user, User
+    # belongs_to :user, User
 
     timestamps
   end
 
-  @required_fields ~w(user_id url)
-  @optional_fields ~w(name)
+  @required_fields ~w()
+  @optional_fields ~w()
+
+  @required_file_fields ~w()
+  @optional_file_fields ~w(photo)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -22,5 +25,6 @@ defmodule Monoton.Photo do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
   end
 end

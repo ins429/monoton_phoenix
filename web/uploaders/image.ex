@@ -1,8 +1,6 @@
 defmodule Monoton.Image do
   use Arc.Definition
-
-  # Include ecto support (requires package arc_ecto installed):
-  # use Arc.Ecto.Definition
+  use Arc.Ecto.Definition
 
   @versions [:original, :thumb]
 
@@ -22,9 +20,9 @@ defmodule Monoton.Image do
   end
 
   # Override the persisted filenames:
-  # def filename(version, _) do
-  #   version
-  # end
+  def filename(version, {file, _}) do
+    "#{file.file_name}_#{version}"
+  end
 
   # Override the storage directory:
   # def storage_dir(version, {file, scope}) do

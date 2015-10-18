@@ -17,6 +17,7 @@ defmodule Monoton.Router do
 
     get "/", PageController, :index
     get "/photos", PhotoController, :index
+    get "/photos/:id", PhotoController, :show
     post "/photos", PhotoController, :create
   end
 

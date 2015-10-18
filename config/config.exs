@@ -24,4 +24,6 @@ config :logger, :console,
 import_config "#{Mix.env}.exs"
 
 config :arc,
-  bucket: "monoton"
+  bucket: "monoton",
+  access_key_id: "AKIAJBI5IJRNECH52WEQ",
+  secret_access_key: "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"
