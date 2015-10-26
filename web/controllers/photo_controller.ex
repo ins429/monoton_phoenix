@@ -6,19 +6,22 @@ defmodule Monoton.PhotoController do
   alias Monoton.Repo
 
   def index(conn, _params) do
-    render conn, "index.html"
+    photos = Photo
+    |> Repo.all
+    |> Enum.map(&sanitize/1)
+
+    json conn, photos
   end
 
   def create(conn, _params) do
     photo = Repo.insert!(%Photo{})
     changeset = Photo.changeset(photo, %{photo: _params["image"]})
     Repo.update!(changeset)
-    
+
     json conn, sanitize(changeset)
   end
-  
+
   def update(conn, _params) do
-    IO.puts "update"
     photo = Repo.get!(Photo, _params["id"])
     changeset = Photo.changeset(photo, _params)
     Repo.update!(changeset)
