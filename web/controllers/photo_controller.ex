@@ -10,9 +10,20 @@ defmodule Monoton.PhotoController do
   end
 
   def create(conn, _params) do
-    Image.store(_params["file"])
+    photo = Repo.insert!(%Photo{})
+    changeset = Photo.changeset(photo, %{photo: _params["image"]})
+    Repo.update!(changeset)
     
-    json conn, %{"photos": "create"}
+    json conn, sanitize(changeset)
+  end
+  
+  def update(conn, _params) do
+    IO.puts "update"
+    photo = Repo.get!(Photo, _params["id"])
+    changeset = Photo.changeset(photo, _params)
+    Repo.update!(changeset)
+
+    json conn, sanitize(changeset)
   end
 
   def show(conn, _params) do
@@ -21,7 +32,10 @@ defmodule Monoton.PhotoController do
   end
 
   def sanitize(data) when is_map(data) do
+    urls = Image.urls(data.photo)
+    photo_with_urls = Map.put(data.photo, :urls, urls)
     data
+    |> Map.put(:photo, photo_with_urls)
     |> Map.delete(:__meta__)
     |> Map.delete(:__struct__)
   end

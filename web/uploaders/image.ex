@@ -21,13 +21,13 @@ defmodule Monoton.Image do
 
   # Override the persisted filenames:
   def filename(version, {file, _}) do
-    "#{file.file_name}_#{version}"
+    "#{version}_#{file.file_name}"
   end
 
   # Override the storage directory:
-  # def storage_dir(version, {file, scope}) do
-  #   "uploads/user/avatars/#{scope.id}"
-  # end
+  def storage_dir(version, {file, scope}) do
+    "uploads/photos/#{scope.id}"
+  end
 
   # Provide a default URL if there hasn't been a file uploaded
   # def default_url(version, scope) do

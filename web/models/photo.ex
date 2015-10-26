@@ -4,6 +4,9 @@ defmodule Monoton.Photo do
 
   schema "photos" do
     field :name, :string
+    # field :description, :string
+    # field :user_id, :integer
+    # field :tags, {:array, :string}
     field :photo, Monoton.Image.Type
 
     # belongs_to :user, User

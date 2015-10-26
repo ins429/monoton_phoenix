@@ -19,6 +19,7 @@ defmodule Monoton.Router do
     get "/photos", PhotoController, :index
     get "/photos/:id", PhotoController, :show
     post "/photos", PhotoController, :create
+    put "/photos/:id", PhotoController, :update
   end
 
   # Other scopes may use custom stacks.

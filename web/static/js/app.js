@@ -10,7 +10,7 @@ class Monoton extends React.Component {
             <section>
                 <div id="stage" className="container-fluid">
                     <Grid/>
-                    <ImagesForm url="/photos"/>
+                    <ImagesForm url="/photos/1"/>
                 </div>
             </section>
         );

@@ -9,7 +9,7 @@ export class ImagesForm extends React.Component {
     uploadFile(e) {
         let fd = new FormData();    
 
-        fd.append('file', this.refs.file.getDOMNode().files[0]);
+        fd.append('photo', this.refs.file.getDOMNode().files[0]);
         fd.append('_csrf_token', CSRF);
 
         console.log(this.props);
@@ -18,7 +18,7 @@ export class ImagesForm extends React.Component {
             data: fd,
             processData: false,
             contentType: false,
-            type: 'POST',
+            type: 'put',
             success: (data) => {
                 console.log(data);
             }
