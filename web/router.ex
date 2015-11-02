@@ -15,11 +15,15 @@ defmodule Monoton.Router do
   scope "/", Monoton do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
-    get "/photos", PhotoController, :index
-    get "/photos/:id", PhotoController, :show
-    post "/photos", PhotoController, :create
-    put "/photos/:id", PhotoController, :update
+    get "/", PagesController, :index
+    get "/photos", PhotosController, :index
+    get "/photos/:id", PhotosController, :show
+    post "/photos", PhotosController, :create
+    put "/photos/:id", PhotosController, :update
+
+    post   "/login", SessionsController, :create
+    post   "/signup", UsersController, :create
+    delete "/logout", SessionsController, :delete
   end
 
   # Other scopes may use custom stacks.

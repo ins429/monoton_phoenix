@@ -1,4 +1,4 @@
-defmodule Monoton.PhotoController do
+defmodule Monoton.PhotosController do
   use Monoton.Web, :controller
 
   alias Monoton.Image
@@ -15,10 +15,10 @@ defmodule Monoton.PhotoController do
 
   def create(conn, _params) do
     photo = Repo.insert!(%Photo{})
-    changeset = Photo.changeset(photo, %{photo: _params["image"]})
+    changeset = Photo.changeset(photo, _params)
     Repo.update!(changeset)
 
-    json conn, sanitize(changeset)
+    json conn, sanitize(Repo.get!(Photo, photo.id))
   end
 
   def update(conn, _params) do
@@ -35,8 +35,11 @@ defmodule Monoton.PhotoController do
   end
 
   def sanitize(data) when is_map(data) do
-    urls = Image.urls(data.photo)
-    photo_with_urls = Map.put(data.photo, :urls, urls)
+    if data.photo do
+      urls = Image.urls(data.photo)
+      photo_with_urls = Map.put(data.photo, :urls, urls)
+    end
+
     data
     |> Map.put(:photo, photo_with_urls)
     |> Map.delete(:__meta__)

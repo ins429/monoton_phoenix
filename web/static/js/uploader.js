@@ -12,13 +12,12 @@ export class ImagesForm extends React.Component {
         fd.append('photo', this.refs.file.getDOMNode().files[0]);
         fd.append('_csrf_token', CSRF);
 
-        console.log(this.props);
         $.ajax({
             url: this.props.url,
             data: fd,
             processData: false,
             contentType: false,
-            type: 'put',
+            type: this.props.method,
             success: (data) => {
                 console.log(data);
             }

@@ -37,6 +37,7 @@ defmodule Monoton.Mixfile do
      {:cowboy, "~> 1.0"},
      {:erlcloud, "~> 0.9.2"},
      {:arc, "~> 0.1.3"},
-     {:arc_ecto, "~> 0.1"}]
+     {:arc_ecto, "~> 0.1"},
+     {:comeonin, "~> 1.0"}]
   end
 end

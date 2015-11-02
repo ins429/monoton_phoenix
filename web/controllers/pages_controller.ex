@@ -1,4 +1,4 @@
-defmodule Monoton.PageController do
+defmodule Monoton.PagesController do
   use Monoton.Web, :controller
 
   def index(conn, _params) do
