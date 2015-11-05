@@ -1,5 +1,6 @@
 defmodule Monoton.Session do
   alias Monoton.User
+  alias Monoton.Repo
 
   def login(params, repo) do
     user = repo.get_by(User, email: String.downcase(params["email"]))

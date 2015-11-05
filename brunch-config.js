@@ -15,7 +15,6 @@ exports.config = {
       order: {
         before: [
           'web/static/vendor/jquery-2.1.4.min.js',
-          'web/static/vendor/jquery.ui.widget.js',
           'web/static/vendor/react.js'
         ]
       }
@@ -59,8 +58,5 @@ exports.config = {
         ignore: [/^(web\/static\/vendor)/],
         pattern: /\.(es6|jsx|js)$/
     }
-  },
-  npm: {
-    enabled: true
   }
 };

@@ -1,17 +1,27 @@
 defmodule Monoton.SessionsController do
   use Monoton.Web, :controller
 
-  def create(conn, %{"session" => session_params}) do
-    case Monoton.Session.login(session_params, Blog.Repo) do
+  alias Monoton.Repo
+
+  def create(conn, _params) do
+    case Monoton.Session.login(_params, Repo) do
       {:ok, user} ->
-        conn
-        |> put_session(:current_user, user.id)
-        |> put_flash(:info, "Logged in")
-        |> redirect(to: "/")
+        json conn, sanitize(user)
       :error ->
-        conn
-        |> put_flash(:info, "Wrong email or password")
-        |> render("new.html")
+        json conn, %{error: "Wrong email or password"}
     end
+  end
+
+  def delete(conn, _) do
+    conn
+    |> delete_session(:current_user)
+    json conn, %{message: "Successfully logged out"}
+  end
+
+  def sanitize(data) when is_map(data) do
+    data
+    |> Map.delete(:__meta__)
+    |> Map.delete(:__struct__)
+    |> Map.delete(:crypted_password)
   end
 end

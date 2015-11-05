@@ -21,9 +21,10 @@ defmodule Monoton.Router do
     post "/photos", PhotosController, :create
     put "/photos/:id", PhotosController, :update
 
-    post   "/login", SessionsController, :create
-    post   "/signup", UsersController, :create
+    post "/login", SessionsController, :create
+    post "/signup", UsersController, :create
     delete "/logout", SessionsController, :delete
+    get "/showme", UsersController, :showme
   end
 
   # Other scopes may use custom stacks.

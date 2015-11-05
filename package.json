@@ -2,7 +2,6 @@
   "name": "mntn",
   "version": "1.0.0",
   "description": "",
-  "main": "gulpfile.js",
   "dependencies": {
     "babel-brunch": "^5.1.1",
     "brunch": "^1.8.3",

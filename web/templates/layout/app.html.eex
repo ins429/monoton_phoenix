@@ -14,7 +14,7 @@
     <body>
         <section id="canvas"></section>
         <script type="text/javascript">
-            const CSRF = "<%= get_csrf_token() %>"
+            const CSRF = "<%= get_csrf_token() %>";
         </script>
         <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
         <script>require("web/static/js/app")</script>

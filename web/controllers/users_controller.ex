@@ -3,21 +3,18 @@ defmodule Monoton.UsersController do
 
   import Ecto.Changeset, only: [put_change: 3]
 
+  alias Monoton.Repo
   alias Monoton.User
 
-  def create(conn, %{"user" => user_params}) do
-      changeset = User.changeset(%User{}, user_params)
+  def create(conn, _params) do
+    changeset = User.changeset(%User{}, _params)
 
-      if changeset.valid? do
-        user = signup(changeset, Monoton.Repo)
-        conn
-        |> put_flash(:info, "Your account was created")
-        |> redirect(to: "/")
-      else
-        conn
-        |> put_flash(:info, "Unable to create account")
-        |> render("new.html", changeset: changeset)
-      end
+    if changeset.valid? do
+      user = signup(changeset, Repo)
+      json conn, changeset
+    else
+      json conn, %{error: "Unable to create account", changeset: changeset}
+    end
   end
 
   def signup(changeset, repo) do
@@ -26,22 +23,21 @@ defmodule Monoton.UsersController do
     |> repo.insert()
   end
 
-  def login(conn, %{"session" => session_params}) do
-    case Monoton.Session.login(session_params, Monoton.Repo) do
-      {:ok, user} ->
-        conn
-        |> put_session(:current_user, user.id)
-        |> put_flash(:info, "Logged in")
-        |> redirect(to: "/")
-      :error ->
-        conn
-        |> put_flash(:info, "Wrong email or password")
-        |> render("new.html")
-    end
+  def showme(conn, _params) do
+    user = get_session(conn, :current_user)
+    json conn, sanitize(user)
   end
 
   defp hashed_password(password) do
     Comeonin.Bcrypt.hashpwsalt(password)
+  end
+
+  def sanitize(data) when is_map(data) do
+    data
+    |> Map.delete(:__meta__)
+    |> Map.delete(:__struct__)
+    |> Map.delete(:password)
+    |> Map.delete(:crypted_password)
   end
 end
 

@@ -42,14 +42,12 @@ class Grid extends React.Component {
     }
 
     render() {
-        console.log(this.state.images);
         let images = this.state.images.map(img => {
             return (img.photo) ? <div className="image">
                     <Img src={img.photo.urls.thumb}/>
                 </div> : false;
         });
 
-        console.log(images);
         return (
             <div className="images">
                 {images}
