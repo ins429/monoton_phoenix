@@ -4,7 +4,7 @@ defmodule Monoton.Mixfile do
   def project do
     [app: :monoton,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.3.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -18,7 +18,7 @@ defmodule Monoton.Mixfile do
   def application do
     [mod: {Monoton, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex, :erlcloud, :arc, :arc_ecto]]
+                    :phoenix_ecto, :postgrex, :mogrify, :ex_aws, :httpoison, :poison]]
   end
 
   # Specifies which paths to compile per environment
@@ -29,15 +29,17 @@ defmodule Monoton.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, "~> 0.15"},
-     {:phoenix_ecto, "~> 0.8"},
-     {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 1.4"},
-     {:phoenix_live_reload, "~> 0.5", only: :dev},
+    [{:phoenix, "~> 1.2.0"},
+     {:phoenix_ecto, "~> 3.0"},
+     {:postgrex, ">= 0.11.2"},
+     {:phoenix_html, "~> 2.6"},
+     {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:erlcloud, "~> 0.9.2"},
-     {:arc, "~> 0.1.3"},
-     {:arc_ecto, "~> 0.1"},
-     {:comeonin, "~> 1.0"}]
+     {:mogrify, "~> 0.3.2"},
+     {:hexate,  ">= 0.5.0"},
+     {:comeonin, "~> 1.0"},
+     {:ex_aws, "~> 1.0.0-beta0"},
+     {:poison, "~> 2.0"},
+     {:httpoison, "~> 0.8"}]
   end
 end

@@ -1,8 +1,15 @@
 # Monoton
 
-To start your new Phoenix application:
 
-1. Install dependencies with `mix deps.get`
-2. Start Phoenix endpoint with `mix phoenix.server`
+## TODO
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+- Offline uploader for dev
+- timestamp
+- 리엑
+- 테그인풋
+- 카타고리
+
+
+
+## rules
+- code should pass its test

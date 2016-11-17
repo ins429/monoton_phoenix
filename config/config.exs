@@ -23,7 +23,12 @@ config :logger, :console,
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
 
-config :arc,
-  bucket: "monoton",
-  access_key_id: "AKIAJBI5IJRNECH52WEQ",
-  secret_access_key: "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"
+config :ex_aws,
+  access_key_id: "AKIAI3QZZHIHFWC7ZQWA",
+  secret_access_key: "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",
+  region: "us-west-2"
+
+config :monoton, ecto_repos: [Monoton.Repo]
+
+config :monoton,
+  env: Mix.env

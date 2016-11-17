@@ -1,0 +1,18 @@
+<h4>Create Post</h4>
+
+<%= form_for @conn,
+    posts_path(@conn, :create),
+    [as: :post, method: :post, multipart: true],
+    fn form -> %>
+
+    <label for="link">Link</label>
+    <%= text_input form, :link, class: "u-full-width" %>
+
+    <label for="body">Body</label>
+    <%= text_input form, :body, class: "u-full-width" %>
+
+    <label for="tags">Tags</label>
+    <div data-tags></div>
+
+    <%= submit "Create", [class: "button button-primary"] %>
+<% end %>

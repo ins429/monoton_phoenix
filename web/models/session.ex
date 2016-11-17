@@ -2,11 +2,11 @@ defmodule Monoton.Session do
   alias Monoton.User
   alias Monoton.Repo
 
-  def login(params, repo) do
-    user = repo.get_by(User, email: String.downcase(params["email"]))
-    case authenticate(user, params["password"]) do
+  def login(user_params) do
+    user = Repo.get_by(User, email: String.downcase(user_params["email"]))
+    case authenticate(user, user_params["password"]) do
       true -> {:ok, user}
-      _    -> :error
+      _    -> {:error, "Wrong email or password"}
     end
   end
 
@@ -18,7 +18,7 @@ defmodule Monoton.Session do
   end
 
   def current_user(conn) do
-    id = Plug.Conn.get_session(conn, :current_user)
+    id = Plug.Conn.get_session(conn, :current_user_id)
     if id, do: Repo.get(User, id)
   end
 

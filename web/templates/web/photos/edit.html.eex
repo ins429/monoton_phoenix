@@ -1,0 +1,16 @@
+<h4>Update Photo</h4>
+
+<%= form_for @conn,
+    photos_path(@conn, :update, @v.record.id),
+    [as: :photo, method: :post, multipart: true],
+    fn form -> %>
+
+    <label for="photo">Photos</label>
+    <input type="file" name="photo[photos][]" class="u-full-width" multiple />
+
+    <label for="tags">Tags</label>
+    <div data-tags="<%= tags_to_string(@v.record.tags) %>"></div>
+
+    <%= submit "Update", [class: "button button-primary"] %>
+<% end %>
+

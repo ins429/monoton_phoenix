@@ -1,24 +1,19 @@
 defmodule Monoton.Photo do
   use Monoton.Web, :model
-  use Arc.Ecto.Model
 
   schema "photos" do
     field :name, :string
-    # field :description, :string
-    # field :user_id, :integer
-    # field :tags, {:array, :string}
-    field :photo, Monoton.Image.Type
+    field :hash, :string
+    field :private, :boolean, default: false
+    field :tags, {:array, :string}, default: []
 
-    # belongs_to :user, User
+    belongs_to :user, Monoton.User
 
     timestamps
   end
 
   @required_fields ~w()
-  @optional_fields ~w()
-
-  @required_file_fields ~w()
-  @optional_file_fields ~w(photo)
+  @optional_fields ~w(tags name hash private)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -28,6 +23,7 @@ defmodule Monoton.Photo do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
   end
+
+  def fields, do: Enum.map(@required_fields ++ @optional_fields ++ ["id"], &String.to_atom/1)
 end

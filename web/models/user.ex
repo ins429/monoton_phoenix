@@ -6,6 +6,8 @@ defmodule Monoton.User do
     field :crypted_password, :string
     field :password, :string, virtual: true
 
+    has_many :photos, Monoton.Photo
+
     timestamps
   end
 

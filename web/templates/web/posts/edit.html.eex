@@ -1,0 +1,18 @@
+<h4>Update Post</h4>
+
+<%= form_for @conn,
+    posts_path(@conn, :update, @v.record.id),
+    [as: :post, method: :put, multipart: true],
+    fn form -> %>
+
+    <label for="link">Link</label>
+    <%= text_input form, :link, class: "u-full-width", value: @v.record.link %>
+
+    <label for="body">Body</label>
+    <%= text_input form, :body, class: "u-full-width", value: @v.record.body %>
+
+    <label for="tags">Tags</label>
+    <div data-tags="<%= tags_to_string(@v.record.tags) %>"></div>
+
+    <%= submit "Update", [class: "button button-primary"] %>
+<% end %>

@@ -1,0 +1,28 @@
+<%= for post <- @v.posts do %>
+    <div class="post">
+        <div class="post-embed">
+            <div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;">
+                <iframe src="<%= embed_link(post.link) %>"
+                        style="width: 100%; height:100%; position: absolute;"
+                        frameborder="0"
+                        allowfullscreen
+                        webkitallowfullscreen
+                        mozallowfullscreen>
+                </iframe>
+            </div>
+        </div>
+        <div class="control-box">
+            <%= link(
+                "Edit",
+                to: posts_path(@conn, :edit, post.id),
+                class: "button button-small"
+            ) %>
+            <%= form_for @conn,
+                posts_path(@conn, :destroy, post.id),
+                [as: :post, method: :delete],
+                fn form -> %>
+                <%= submit "Delete", [class: "button button-small"] %>
+            <%= end %>
+        </div>
+    </div>
+<% end %>

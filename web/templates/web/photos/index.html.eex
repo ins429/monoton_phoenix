@@ -1,0 +1,11 @@
+<%= for four_photos <- Enum.chunk(@v.photos, 4, 4, []) do %>
+    <div class="row">
+        <%= for photo <- four_photos do %>
+            <div class="three columns">
+                <a href="<%= photos_path(@conn, :show, photo.id) %>">
+                    <img src="<%= photo.thumb_url %>" alt="" />
+                </a>
+            </div>
+        <% end %>
+    </div>
+<% end %>

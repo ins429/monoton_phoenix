@@ -1,72 +1,41 @@
-import {Socket} from 'phoenix';
-import {ImagesForm} from './uploader';
-import {User} from './users/user';
+import page from 'page'
+import jQuery from 'jquery'
+import React from 'react'
+import {render} from 'react-dom'
+import '../vendor/css/normalize.css'
+import '../vendor/css/skeleton.css'
+import '../css/app.scss'
 
-class Monoton extends React.Component {
-    componentWillMount() {
-    }
+import NewPhotoPage from './pages/photos/new'
+import PostForm from './pages/posts/form'
 
-    render() {
-        return (
-            <section>
-                <div id="stage" className="container-fluid">
-                    <User/>
-                    <Grid/>
-                    <ImagesForm url="/photos" method="POST"/>
-                </div>
-            </section>
-        );
-    }
-}
+export const App = {
+    common: [
+    ],
+    pages: {
+        '/photos/new': [NewPhotoPage],
+        '/posts/new': [PostForm],
+        '/posts/[0-9]*/edit': [PostForm]
+    },
+    requireAndCall(page) {
+        if (page && page.call) {
+            page.call()
+        }
+    },
+    run: function() {
+        let route = window.location.pathname
 
-class Grid extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            images: []
+        App.common.forEach(App.requireAndCall)
+        for (let path in App.pages) {
+            if (route.match(new RegExp(`^${path}$`))) {
+                App.pages[path].forEach(App.requireAndCall)
+            }
         };
     }
+};
 
-    componentDidMount() {
-        $.ajax({
-            url: '/photos'
-        })
-        .done(function(resp) {
-            this.setState({
-                images: resp
-            });
-        }.bind(this))
-        .fail(function() {
-            // fix me
-        }.bind(this));
-    }
-
-    render() {
-        let images = this.state.images.map(img => {
-            return (img.photo) ? <div className="image">
-                    <Img src={img.photo.urls.thumb}/>
-                </div> : false;
-        });
-
-        return (
-            <div className="images">
-                {images}
-            </div>
-        );
-    }
+if (document.readyState != 'loading'){
+    App.run();
+} else {
+    document.addEventListener('DOMContentLoaded', App.run);
 }
-
-class Img extends React.Component {
-    componentWillMount() {
-    }
-
-    render() {
-        return (
-            <div>
-                <img src={this.props.src} alt="" />
-            </div>
-        );
-    }
-}
-
-React.render(<Monoton/>, document.getElementById('canvas'));

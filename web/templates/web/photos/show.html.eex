@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="twelve columns">
+        <img src="<%= @v.record.thumb_url %>" />
+    </div>
+    <div class="twelve columns">
+        <a href="<%= photos_path(@conn, :edit, @v.record.id) %>" class="button">Edit</a>
+    </div>
+</div>
+

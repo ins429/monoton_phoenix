@@ -1,0 +1,38 @@
+<nav class="navbar">
+    <div class="container">
+        <ul class="navbar-list">
+            <li class="navbar-item"><a class="navbar-link" href="/">mntn</a></li>
+            <li class="navbar-item">
+                <a class="navbar-link" href="/photos" data-popover="#codeNavPopover">photos</a>
+                <div id="codeNavPopover" class="popover">
+                    <ul class="popover-list">
+                        <li class="popover-item">
+                            <a class="popover-link" href="/photos">photos</a>
+                        </li>
+                        <li class="popover-item">
+                            <a class="popover-link" href="/photos/new">new</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="navbar-item">
+                <a class="navbar-link" href="/posts" data-popover="#moreNavPopover">posts</a>
+                <div id="moreNavPopover" class="popover">
+                    <ul class="popover-list">
+                        <li class="popover-item">
+                            <a class="popover-link" href="/posts">posts</a>
+                        </li>
+                        <li class="popover-item">
+                            <a class="popover-link" href="/posts/new">new</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <%= unless @v.user do %>
+                <li class="navbar-item"><a class="navbar-link" href="/login">login</a></li>
+            <% else %>
+                <li class="navbar-item"><a class="navbar-link" href="/logout">logout</a></li>
+            <% end %>
+        </ul>
+    </div>
+</nav>

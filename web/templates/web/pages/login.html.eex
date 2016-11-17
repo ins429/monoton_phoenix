@@ -1,0 +1,2 @@
+<script src="<%= static_path(@conn, "/js/users/login.js") %>"></script>
+<script>require("web/static/js/users/login")</script>

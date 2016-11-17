@@ -18,7 +18,10 @@ defmodule Monoton.Web do
 
   def model do
     quote do
-      use Ecto.Model
+      use Ecto.Schema
+
+      import Ecto
+      import Ecto.Changeset
     end
   end
 
@@ -28,9 +31,11 @@ defmodule Monoton.Web do
 
       alias Monoton.Repo
       import Ecto.Model
+      import Ecto
       import Ecto.Query, only: [from: 2]
 
       import Monoton.Router.Helpers
+      import Monoton.ControllerHelper
     end
   end
 
@@ -61,6 +66,7 @@ defmodule Monoton.Web do
       use Phoenix.Channel
 
       alias Monoton.Repo
+      import Ecto
       import Ecto.Model
       import Ecto.Query, only: [from: 2]
 

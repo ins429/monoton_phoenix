@@ -1,6 +1,27 @@
 defmodule Monoton.Endpoint do
   use Phoenix.Endpoint, otp_app: :monoton
 
+  # def call(conn, opts) do
+  #   try do
+  #     super(conn, opts)
+  #   catch
+  #     kind, reason ->
+  #       conn = Phoenix.Controller.accepts(conn, ["html", "json"])
+  #       status = status(kind, reason)
+  #       format = conn.private[:phoenix_format]
+
+  #       response = Monoton.ErrorView.render("#{status}.#{format}", %{conn: conn, kind: kind, reason: reason})
+  #       response_function(format).(Plug.Conn.put_status(conn, status), response)
+  #   end
+  # end
+
+  # defp response_function("json"), do: &Phoenix.Controller.json/2
+  # defp response_function("html"), do: &Phoenix.Controller.html/2
+
+  # defp status(:error, error), do: Plug.Exception.status(error)
+  # defp status(:throw, _throw), do: 500
+  # defp status(:exit, _exit), do: 500
+
   socket "/socket", Monoton.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.

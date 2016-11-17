@@ -1,0 +1,16 @@
+<h4>Create Photo</h4>
+
+<%= form_for @conn,
+    photos_path(@conn, :create),
+    [as: :photo, method: :post, multipart: true],
+    fn form -> %>
+
+    <label for="photo">Photos</label>
+    <input type="file" name="photo[photos][]" class="u-full-width" multiple />
+
+    <label for="tags">Tags</label>
+    <div data-tags></div>
+
+    <%= submit "Create", [class: "button button-primary"] %>
+<% end %>
+

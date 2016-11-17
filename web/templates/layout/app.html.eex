@@ -7,16 +7,15 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Hello Phoenix!</title>
-        <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+        <title>mntn</title>
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+        <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     </head>
 
     <body>
-        <section id="canvas"></section>
-        <script type="text/javascript">
-            const CSRF = "<%= get_csrf_token() %>";
-        </script>
-        <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-        <script>require("web/static/js/app")</script>
+        <div class="container">
+            <%= render Monoton.SharedView, "_nav.html", assigns %>
+            <%= render @view_module, @view_template, assigns %>
+        </div>
     </body>
 </html>

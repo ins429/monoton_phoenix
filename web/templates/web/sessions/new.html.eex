@@ -1,0 +1,16 @@
+<h4>Login</h4>
+
+<%= form_for @conn,
+    sessions_path(@conn, :create),
+    [as: :user, method: :post, multipart: true],
+    fn form -> %>
+
+    <label for="email">Email</label>
+    <%= text_input form, :email, class: "u-full-width" %>
+
+    <label for="password">Password</label>
+    <%= password_input form, :password, class: "u-full-width" %>
+
+    <%= submit "Login", [class: "button button-primary"] %>
+<% end %>
+
